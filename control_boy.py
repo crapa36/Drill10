@@ -2,8 +2,8 @@ from pico2d import *
 
 from grass import Grass
 from boy import Boy
-
-
+from ball import Ball
+import game_world
 # Game object class here
 
 
@@ -30,24 +30,28 @@ def reset_world():
     running = True
     world = []
 
-    grass = Grass()
+    grass = Grass(400, 30)
     world.append(grass)
-
+    game_world.add_object(grass, 2)
+    grass2 = Grass(400, 50)
+    game_world.add_object(grass2, 0)
     boy = Boy()
     world.append(boy)
+    game_world.add_object(boy, 1)
+
 
 
 
 def update_world():
-    for o in world:
-        o.update()
-    pass
+    
+    game_world.update()
+
 
 
 def render_world():
     clear_canvas()
-    for o in world:
-        o.draw()
+    
+    game_world.render()
     update_canvas()
 
 
